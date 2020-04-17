@@ -69,7 +69,8 @@ public class Percolation {
     // is the site (row, col) full?
     public boolean isFull(int row, int col) {
         validateIndices(row, col);
-        return isOpen(row, col) && unionFindForBackWash.connected(encode(row, col), 0);
+        return isOpen(row, col)
+                && unionFindForBackWash.find(encode(row, col)) == unionFindForBackWash.find(0);
     }
 
     // returns the number of open sites
@@ -79,7 +80,7 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        return unionFind.connected(0, size * size + 1);
+        return unionFind.find(0) == unionFind.find(size * size + 1);
     }
 
     private int encode(int row, int col) {

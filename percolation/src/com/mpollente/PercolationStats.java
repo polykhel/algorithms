@@ -11,7 +11,7 @@ public class PercolationStats {
     private int trials;
     private double[] percolationThreshold;
 
-    PercolationStats(int n, int trials) {
+    public PercolationStats(int n, int trials) {
         if (n <= 0 || trials <= 0) {
             throw new IllegalArgumentException();
         }
@@ -34,11 +34,11 @@ public class PercolationStats {
         return StdStats.stddev(percolationThreshold);
     }
 
-    public double confidenceLow() {
+    public double confidenceLo() {
         return mean() - ((1.96 * stddev()) / Math.sqrt(trials));
     }
 
-    public double confidenceHigh() {
+    public double confidenceHi() {
         return mean() + ((1.96 * stddev()) / Math.sqrt(trials));
     }
 
@@ -49,7 +49,7 @@ public class PercolationStats {
         System.out.printf("%-25s= %f\n", "mean", percolationStats.mean());
         System.out.printf("%-25s= %f\n", "stddev", percolationStats.stddev());
         System.out.printf("%-25s= [%f, %f]", "95% confidence interval",
-                          percolationStats.confidenceLow(),
-                          percolationStats.confidenceHigh());
+                          percolationStats.confidenceLo(),
+                          percolationStats.confidenceHi());
     }
 }
