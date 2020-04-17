@@ -8,11 +8,11 @@ import edu.princeton.cs.algs4.WeightedQuickUnionUF;
 
 public class Percolation {
 
-    private int size; // Percolation system size
+    private final int size; // Percolation system size
     private boolean[] open; // Percolation system
     private int openSites; // number of open sites
-    private WeightedQuickUnionUF unionFind;
-    private WeightedQuickUnionUF unionFindForBackWash;
+    private final WeightedQuickUnionUF unionFind;
+    private final WeightedQuickUnionUF unionFindForBackWash;
 
     // creates n-by-n grid, with all sites initially blocked
     public Percolation(int n) {
@@ -80,7 +80,7 @@ public class Percolation {
 
     // does the system percolate?
     public boolean percolates() {
-        return unionFind.find(0) == unionFind.find(size * size + 1);
+        return isFull(1, 1) && unionFind.find(0) == unionFind.find(size * size + 1);
     }
 
     private int encode(int row, int col) {
